@@ -1,0 +1,24 @@
+'<https: //api.smartrecruiters.com/candidates/717cdd8d-a667-4439-97c9-09775cf200a1/jobs/0709de72-17fb-457a-91ff-94ea8feb6106/properties>; rel=self', 'Smartrecruiters-Signature': '', 'Smartrecruiters-Timestamp': '1759437172', 'Traceparent': '00-43a6c10f2fc152cc57fcde8db9c03dc8-6b1300ef7ec92088-00', 'X-B3-Sampled': '0', 'X-B3-Spanid': '6b1300ef7ec92088', 'X-B3-Traceid': '43a6c10f2fc152cc57fcde8db9c03dc8', 'X-Forwarded-For': '18.184.122.101', 'X-Forwarded-Host': 'disheartenedly-camellike-sol.ngrok-free.dev', 'X-Forwarded-Proto': 'https'}
+ Body: {'job_id': '0709de72-17fb-457a-91ff-94ea8feb6106', 'candidate_id': '717cdd8d-a667-4439-97c9-09775cf200a1', 'application_id': '717cdd8d-a667-4439-97c9-09775cf200a1'
+}
+127.0.0.1 - - [
+    02/Oct/2025 15: 32: 52
+] "POST /sr/webhook HTTP/1.1"200 -
+ Headers: {'Host': 'disheartenedly-camellike-sol.ngrok-free.dev', 'User-Agent': 'SmartRecruiters-Webhooks/201913.12', 'Content-Length': '102', 'Accept-Encoding': 'gzip, deflate, br', 'B3': 'c076095aee1ecf97e9308548f8a46bda-2860f3a32fb516f8-0', 'Content-Type': 'application/json', 'Event-Id': '3be2db17-c807-424e-80af-3a095915713f', 'Event-Name': 'position.updated', 'Event-Version': 'v1', 'Link': '<https: //api.smartrecruiters.com/jobs/0709de72-17fb-457a-91ff-94ea8feb6106/positions/5d36f598-18ca-44a9-86b4-9ed3811a435e>; rel=self', 'Smartrecruiters-Signature': '', 'Smartrecruiters-Timestamp': '1759437173', 'Traceparent': '00-c076095aee1ecf97e9308548f8a46bda-2860f3a32fb516f8-00', 'X-B3-Sampled': '0', 'X-B3-Spanid': '2860f3a32fb516f8', 'X-B3-Traceid': 'c076095aee1ecf97e9308548f8a46bda', 'X-Forwarded-For': '18.184.122.101', 'X-Forwarded-Host': 'disheartenedly-camellike-sol.ngrok-free.dev', 'X-Forwarded-Proto': 'https'}
+ Body: {'job_id': '0709de72-17fb-457a-91ff-94ea8feb6106', 'position_id': '5d36f598-18ca-44a9-86b4-9ed3811a435e'
+    }
+127.0.0.1 - - [
+        02/Oct/2025 15: 32: 53
+    ] "POST /sr/webhook HTTP/1.1"200 -
+ Headers: {'Host': 'disheartenedly-camellike-sol.ngrok-free.dev', 'User-Agent': 'SmartRecruiters-Webhooks/201913.12', 'Content-Length': '45', 'Accept-Encoding': 'gzip, deflate, br', 'B3': 'b8459f71d72d9707dcda3a6ad464dfc6-c19de9a9826fb286-0', 'Content-Type': 'application/json', 'Event-Id': 'efa83a56-ef11-4c1f-b87a-1a62ef229a63', 'Event-Name': 'job.status.updated', 'Event-Version': 'v1', 'Link': '<https: //api.smartrecruiters.com/jobs/0709de72-17fb-457a-91ff-94ea8feb6106/status/history>; rel=self', 'Smartrecruiters-Signature': '', 'Smartrecruiters-Timestamp': '1759437173', 'Traceparent': '00-b8459f71d72d9707dcda3a6ad464dfc6-c19de9a9826fb286-00', 'X-B3-Sampled': '0', 'X-B3-Spanid': 'c19de9a9826fb286', 'X-B3-Traceid': 'b8459f71d72d9707dcda3a6ad464dfc6', 'X-Forwarded-For': '18.184.122.101', 'X-Forwarded-Host': 'disheartenedly-camellike-sol.ngrok-free.dev', 'X-Forwarded-Proto': 'https'}
+ Body: {'id': '0709de72-17fb-457a-91ff-94ea8feb6106'
+        }
+127.0.0.1 - - [
+            02/Oct/2025 15: 32: 54
+        ] "POST /sr/webhook HTTP/1.1"200 -
+ Headers: {'Host': 'disheartenedly-camellike-sol.ngrok-free.dev', 'User-Agent': 'SmartRecruiters-Webhooks/201913.12', 'Content-Length': '100', 'Accept-Encoding': 'gzip, deflate, br', 'B3': 'ddade60055b9189950570507d5c6773f-d035d2549c414f48-0', 'Content-Type': 'application/json', 'Event-Id': 'a9df6775-c54f-4d37-be05-20ef0adba1c6', 'Event-Name': 'job.ad.postings.updated', 'Event-Version': 'v1', 'Link': '<https: //api.smartrecruiters.com/jobs/0709de72-17fb-457a-91ff-94ea8feb6106/jobads/450cd3d0-4a74-4fe3-8c58-7f12024d320f/postings>; rel=self', 'Smartrecruiters-Signature': '', 'Smartrecruiters-Timestamp': '1759437182', 'Traceparent': '00-ddade60055b9189950570507d5c6773f-d035d2549c414f48-00', 'X-B3-Sampled': '0', 'X-B3-Spanid': 'd035d2549c414f48', 'X-B3-Traceid': 'ddade60055b9189950570507d5c6773f', 'X-Forwarded-For': '18.184.122.101', 'X-Forwarded-Host': 'disheartenedly-camellike-sol.ngrok-free.dev', 'X-Forwarded-Proto': 'https'}
+ Body: {'job_id': '0709de72-17fb-457a-91ff-94ea8feb6106', 'job_ad_id': '450cd3d0-4a74-4fe3-8c58-7f12024d320f'
+            }
+127.0.0.1 - - [
+                02/Oct/2025 15: 33: 02
+            ] "POST /sr/webhook HTTP/1.1"200 -
