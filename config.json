@@ -1,0 +1,6 @@
+{
+  "client_id": "8072547708947",
+  "client_secret": "07c95a9d-cefd-4451-b53f-54a7b6ca42eb",
+  "grant_type": "client_credentials",
+  "token_url": "https://www.smartrecruiters.com/identity/oauth/token"
+}
