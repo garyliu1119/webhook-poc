@@ -1,0 +1,9 @@
+{
+  "salt": "l9r7/UtYZF4tDRj9OYWmBA==",
+  "config": {
+    "client_id": "gAAAAABo6Pr4R8zz-B5C4RuNRCap_5wR3af-mViYL4WqfHoQNh3Oufd6gqzQHwobg0V7Pwvikc45LhJue19kIg7WogT9BibelA==",
+    "client_secret": "gAAAAABo6Pr48S_M_mvFpca_Ucol2-0GeeWAeK0dPgIwHLjnGan03DZOH5r6tfqCNyvYSJOivmtszMFkxGq4-A5gXpPX8MNHz6qKthkf4ZRGIjCl1jaIoLzNNSNGAKz7zpLVwap5gMto",
+    "grant_type": "client_credentials",
+    "token_url": "https://www.smartrecruiters.com/identity/oauth/token"
+  }
+}
