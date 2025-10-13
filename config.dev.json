@@ -1,9 +1,6 @@
 {
-  "salt": "l9r7/UtYZF4tDRj9OYWmBA==",
-  "config": {
-    "client_id": "gAAAAABo6Pr4R8zz-B5C4RuNRCap_5wR3af-mViYL4WqfHoQNh3Oufd6gqzQHwobg0V7Pwvikc45LhJue19kIg7WogT9BibelA==",
-    "client_secret": "gAAAAABo6Pr48S_M_mvFpca_Ucol2-0GeeWAeK0dPgIwHLjnGan03DZOH5r6tfqCNyvYSJOivmtszMFkxGq4-A5gXpPX8MNHz6qKthkf4ZRGIjCl1jaIoLzNNSNGAKz7zpLVwap5gMto",
-    "grant_type": "client_credentials",
-    "token_url": "https://www.smartrecruiters.com/identity/oauth/token"
-  }
+  "client_id": "gAAAAABo6ZQUBbD-5v7XpDTnBUU1OmLyCJTh_46SDxMjLCRRYMPwFtwgGIXrV8OgdsPXgy_JtV2NdtynRGQY2GNR-IRMYSquYg==",
+  "client_secret": "gAAAAABo6ZQUpWhQqRDpfZ1-mweAcWKgnLMR4MuY3mggw39Og_OshSYAEzhHg5Pgvqw-3z04BgB0wZbUuZsiJzG7-PeolkmD6-wdXmRjmaKF-K6lD_OZPHjqK9gkEWROVHUNJe_EX7EE",
+  "grant_type": "client_credentials",
+  "token_url": "https://www.smartrecruiters.com/identity/oauth/token"
 }

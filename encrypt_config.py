@@ -1,5 +1,6 @@
 import argparse
 import base64
+import hashlib
 import getpass
 import json
 import os
@@ -32,11 +33,19 @@ def decrypt_value(value: str, fernet: Fernet) -> str:
     return fernet.decrypt(value.encode()).decode()
 
 
-def encrypt_config(in_path: Path, out_path: Path, passphrase: str) -> None:
+def encrypt_config(in_path: Path, out_path: Path, passphrase: str, deterministic_salt: bool = True) -> None:
     with in_path.open("r", encoding="utf-8") as f:
         config = json.load(f)
-
-    salt = os.urandom(16)
+    if deterministic_salt:
+        # Derive a deterministic salt from the passphrase.
+        # WARNING: this is less secure than a random salt and makes
+        # the encryption vulnerable to precomputation/rainbow-table attacks.
+        # Use only if you fully understand the trade-offs.
+        salt = hashlib.sha256(passphrase.encode()).digest()[:16]
+        # Inform the user that we're not storing salt and are deriving it.
+        print("⚠️  Deterministic salt derived from passphrase; salt will NOT be stored in the output file")
+    else:
+        salt = os.urandom(16)
     key = derive_key_from_passphrase(passphrase, salt)
     fernet = Fernet(key)
 
@@ -45,7 +54,11 @@ def encrypt_config(in_path: Path, out_path: Path, passphrase: str) -> None:
         if k in cfg and cfg[k] is not None:
             cfg[k] = encrypt_value(str(cfg[k]), fernet)
 
-    out = {"salt": base64.b64encode(salt).decode(), "config": cfg}
+    # Write a flat config file. If storing salt, include it as a top-level key.
+    if deterministic_salt:
+        out = cfg
+    else:
+        out = {"salt": base64.b64encode(salt).decode(), **cfg}
     with out_path.open("w", encoding="utf-8") as f:
         json.dump(out, f, indent=2)
 
@@ -55,16 +68,28 @@ def encrypt_config(in_path: Path, out_path: Path, passphrase: str) -> None:
 def decrypt_config(in_path: Path, out_path: Path | None, passphrase: str, show: bool = False) -> None:
     with in_path.open("r", encoding="utf-8") as f:
         data = json.load(f)
+    # Accept multiple formats:
+    # - legacy: {"salt":..., "config": { ... }}
+    # - new stored-salt flat: {"salt":..., "client_id":..., "client_secret":...}
+    # - new deterministic (no salt): {"client_id":..., "client_secret":...}
 
     salt_b64 = data.get("salt")
-    if not salt_b64:
-        raise ValueError("Input file missing 'salt' value; is this an encrypted file?")
+    if salt_b64:
+        salt = base64.b64decode(salt_b64)
+    else:
+        # No salt stored: assume deterministic salt derived from passphrase
+        salt = hashlib.sha256(passphrase.encode()).digest()[:16]
 
-    salt = base64.b64decode(salt_b64)
+    # Extract config fields. If "config" key exists (legacy), use it. Otherwise,
+    # treat top-level keys (excluding 'salt') as the config.
+    if isinstance(data.get("config"), dict):
+        cfg_enc = data.get("config") or {}
+    else:
+        # copy data but remove 'salt' if present
+        cfg_enc = {k: v for k, v in data.items() if k != "salt"}
     key = derive_key_from_passphrase(passphrase, salt)
     fernet = Fernet(key)
 
-    cfg_enc = data.get("config") or {}
     cfg = dict(cfg_enc)
     for k in ("client_id", "client_secret"):
         if k in cfg and cfg[k] is not None:
@@ -99,6 +124,7 @@ def main(argv: list[str] | None = None) -> int:
     p_enc.add_argument("-i", "--input", type=Path, default=Path("config.json"), help="Input plain config file")
     p_enc.add_argument("-o", "--output", type=Path, default=Path("config.dev.json"), help="Output encrypted file")
     p_enc.add_argument("-p", "--passphrase", type=str, help="Passphrase (will prompt if omitted)")
+    p_enc.add_argument("--store-salt", action="store_true", help="Store a random salt in the output file (default: omit salt and derive it from passphrase)")
 
     p_dec = sub.add_parser("decrypt", help="Decrypt an encrypted config file")
     p_dec.add_argument("-i", "--input", type=Path, default=Path("config.dev.json"), help="Input encrypted file")
@@ -111,7 +137,9 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.cmd == "encrypt":
             passphrase = args.passphrase or _prompt_passphrase(confirm=True)
-            encrypt_config(args.input, args.output, passphrase)
+            # Default behavior: deterministic salt (no salt stored). If user requests --store-salt,
+            # generate a random salt and save it in the output file.
+            encrypt_config(args.input, args.output, passphrase, deterministic_salt=(not args.store_salt))
         elif args.cmd == "decrypt":
             passphrase = args.passphrase or _prompt_passphrase(confirm=False)
             out = args.output if args.output else None
